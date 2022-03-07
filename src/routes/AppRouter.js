@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Redirect,
@@ -11,38 +11,61 @@ import { AuthRouter } from './AuthRouter';
 import { useDispatch } from 'react-redux';
 import { app } from '../firebaseConfig';
 import { login } from '../actions/auth';
+import { Spinner } from '../components/spinner/Spinner';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
-  const dispatch = useDispatch()
+
+  const [preLoading, setPreLoading] = useState(true);
+  const [isLogging, setIsLogging] = useState(false);
+  const dispatch = useDispatch();
   
   // Nos permite observar los cambios de la autenticacion de los usuarios
   useEffect(() => {
     
     app.auth().onAuthStateChanged((user) => {
 
-      // Si exite el uid del user, dispara la accion del login. 
+      // Si exite el uid del user, dispara la accion del login
+      // cambia el isLogging a true
       if (user?.uid) {
-        dispatch(
-          login(user.uid, user.displayName)
-        )
+        dispatch(login(user.uid, user.displayName));
+        setIsLogging(true)
+      } else {
+        setIsLogging(false)
       }
-    });
-  }, [dispatch]);
 
+      setPreLoading(false);
+    });
+  }, [dispatch, setPreLoading, setIsLogging]);
+
+  // Preloaing (realizar un componente)
+  if (preLoading) {
+    return (
+      <div className='preloading__content flex-row-center'>
+        <Spinner 
+          textContent='Cargando...'
+          flexStyle='flex-column-center'
+        />
+      </div>
+    )
+  }
   return (
     <Router>
       <Switch>
         
-        <Route
+        <PublicRoute
           path='/auth' 
-          component={AuthRouter}  
+          isAuthenticated={ isLogging }
+          component={ AuthRouter }  
         />
           
 
-        <Route
+        <PrivateRoute
           exact
+          isAuthenticated={ isLogging }
           path='/' 
-          component={Journal}  
+          component={ Journal }  
         />
         
         <Redirect to='/auth/login'/>
