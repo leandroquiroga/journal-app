@@ -32,15 +32,22 @@ export const singUpWithEmailAndPassword = (email, password, name) => {
 
   return (dispatch) => {
 
+    dispatch(startLoading());
     app.auth().createUserWithEmailAndPassword(email, password)
       .then(async ({ user }) => {
 
         await user.updateProfile({ displayName: name })
         
+        dispatch(finishLoading());
+        
         dispatch(
           login(user.uid, user.displayName)
-        )
-      }).catch(error => console.log(error)); 
+        );
+
+      }).catch(error => {
+        dispatch(finishLoading());
+        console.log(error)
+      }); 
   }
 }
 
@@ -59,6 +66,16 @@ export const googleAuthSignUp = () => {
   
 }
 
+// Cerrar sesion
+export const startLogout = () => {
+  
+  return async (dispatch) => {
+    await app.auth().signOut();
+    dispatch(logout())
+  }
+};
+
+
 export const login = (uid, displayName) => ({
   type: types.login,
   payload: {
@@ -66,3 +83,7 @@ export const login = (uid, displayName) => ({
     displayName,
   }
 });
+
+export const logout = () => ({
+  type:types.logout
+})
