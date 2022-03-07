@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 import { useForm } from './../../hooks/useForm';
 import { singUpWithEmailAndPassword } from '../../actions/auth';
 import { isFormValid } from './../../helpers/helpers';
+import { Spinner } from '../spinner/Spinner';
 
 export const Register = () => {
 
-  // se queda con el objeto ui de nuestro state
-  const state = useSelector(state => state.ui);
   
   const dispatch = useDispatch();
-
+  
+  // se queda con el objeto ui de nuestro state
+  const state = useSelector(state => state.ui);
   const { loading, msgError } = state;
   
   const [valueForm, handleValueForm] = useForm({
@@ -118,7 +119,14 @@ export const Register = () => {
           className='button button-primary pointer p-2'
           disabled={loading}
         >
-          {(loading) ? 'Restrandote...' : 'Registrate'}
+          {(loading) ?
+            <Spinner
+              textContent='Registrando...'
+              flexStyle='flex-row-center'
+            />
+            :
+            'Registrar'
+          }
         </button>
         {
           (msgError) && <div className='auth__alert-error p-2 text-center'> {msgError} </div>

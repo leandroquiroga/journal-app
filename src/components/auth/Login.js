@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from './../../hooks/useForm';
 import { googleAuthSignUp, startLoginEmailPassword } from './../../actions/auth';
+import { Spinner } from '../spinner/Spinner';
 // import { isFormsValid } from '../../helpers/helpers';
 
 export const Login = () => {
@@ -78,7 +79,14 @@ export const Login = () => {
           className='button button-primary pointer p-2'
           disabled={loading}
         >
-          {(loading) ? 'Cargando...' : 'Iniciar Sesion'}
+          {(loading) ?
+            <Spinner
+              textContent='Iniciando...'
+              flexStyle='flex-row-center'
+            />
+            :
+            'Iniciar sesión'
+          }
         </button>
         {
           (msgError) && <div className='auth__alert-error p-2 text-center'> {msgError} </div>
