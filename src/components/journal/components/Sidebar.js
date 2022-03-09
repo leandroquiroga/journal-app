@@ -3,16 +3,20 @@ import React from 'react'
 import { JournaEntries } from './JournaEntries'
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../../actions/auth';
+import { addNewNotes } from '../../../actions/notes';
 
 export const Sidebar = () => {
 
   const dispatch = useDispatch();
   const state = useSelector(state => state.auth);
 
-  console.log(state)
 
   const handleLogout = () => {
     dispatch(startLogout());
+  };
+
+  const handleAddNewNote = () => {
+    dispatch(addNewNotes());
   }
   return (
     <aside className='journal__sidebar flex-column px-2'>
@@ -31,7 +35,10 @@ export const Sidebar = () => {
         </button>
       </nav>
 
-      <article className='journal__new-entry flex-column-center width-100 pointer'>
+      <article
+        className='journal__new-entry flex-column-center width-100 pointer'
+        onClick={handleAddNewNote}
+      >
         <i className='far fa-calendar-plus fa-4x'></i>
         <p className='mt-2'> Nueva acción </p>
       </article>
