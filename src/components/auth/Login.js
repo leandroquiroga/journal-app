@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from './../../hooks/useForm';
 import { googleAuthSignUp, startLoginEmailPassword } from './../../actions/auth';
 import { Spinner } from '../spinner/Spinner';
-// import { isFormsValid } from '../../helpers/helpers';
+import { removeError, setError } from '../../actions/ui';
 
 export const Login = () => {
 
@@ -22,7 +22,11 @@ export const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
+    if ([email, password].includes('')) {
+      dispatch(setError('Todos los campos son obligatorios'));
+      setTimeout(() => dispatch(removeError()), 3000);
+      return
+    }
     dispatch(startLoginEmailPassword(email, password));
 
   };
