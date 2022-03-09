@@ -1,6 +1,7 @@
 import { types } from './../types/types';
 import { app, googleAuthProvaider } from './../firebaseConfig';
 import { finishLoading, startLoading } from './ui';
+import { isFormsValidLogin } from '../helpers/helpers';
 
 // Las acciones son aquellas que vamos a utlizar
 // para indicar al reducer que determinaciones
@@ -15,13 +16,15 @@ export const startLoginEmailPassword = (email, password) => {
       .then(({ user }) => {
         dispatch(finishLoading());
         
+        console.log(user)
         dispatch(
-          login(user.uid, user.displayName)
+          login(user.uid, user.displayName),
+          console.log(login(user.uid, user.displayName))
         );
-
+          
       }).catch(error => {
-        console.log(error);
         dispatch(finishLoading());
+        isFormsValidLogin(email, password, dispatch, error.code)
       });
   };
 }  
@@ -41,12 +44,12 @@ export const singUpWithEmailAndPassword = (email, password, name) => {
         dispatch(finishLoading());
         
         dispatch(
-          login(user.uid, user.displayName)
+          login(user.uid, user.displayName),
         );
 
-      }).catch(error => {
+      }).catch((error) => {
         dispatch(finishLoading());
-        console.log(error)
+        isFormsValidLogin(dispatch, error.code)
       }); 
   }
 }
@@ -79,7 +82,7 @@ export const startLogout = () => {
 export const login = (uid, displayName) => ({
   type: types.login,
   payload: {
-    uid,
+    uid,  
     displayName,
   }
 });
