@@ -1,0 +1,27 @@
+@media(max-width: 763px){
+  .journal__main-content{
+    display: block;
+    position: relative;
+
+    .journal__sidebar{
+      width: 100%;
+      z-index: 500;
+      position: absolute;
+    }
+
+    .journal__main{
+      width: 100%;
+      z-index: 1;
+      position: absolute;
+    }
+  }
+
+  .sidebar-hidden{
+    transform: translateX(-1600%);
+  }
+
+  .sidebar-show{
+    transform: translateX(0%);
+
+  }
+}
