@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Redirect,
-  Route,
   Switch,
 } from 'react-router-dom';
 
@@ -14,23 +13,27 @@ import { login } from '../actions/auth';
 import { Spinner } from '../components/spinner/Spinner';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { loadingNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
   const [preLoading, setPreLoading] = useState(true);
   const [isLogging, setIsLogging] = useState(false);
   const dispatch = useDispatch();
-  
+
   // Nos permite observar los cambios de la autenticacion de los usuarios
+
   useEffect(() => {
-    
-    app.auth().onAuthStateChanged((user) => {
+    app.auth().onAuthStateChanged(async(user) => {
 
       // Si exite el uid del user, dispara la accion del login
       // cambia el isLogging a true
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
-        setIsLogging(true)
+        setIsLogging(true);
+
+        // Carga los datos de la base de datos
+        dispatch(loadingNotes(user.uid));
       } else {
         setIsLogging(false)
       }
