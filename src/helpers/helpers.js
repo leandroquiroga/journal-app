@@ -68,3 +68,54 @@ export const loadNotes = async (uid) => {
 
   return notes;
 }
+
+
+// Se encarga de la subida de las imagenes
+export const fileUpload = async (file) => {
+  
+  const url = 'https://api.cloudinary.com/v1_1/dyjs4hg9i/upload';
+
+  // Realizamos una instancia de FormData
+  const formData = new FormData();
+  
+  // Colocamos el body del form data
+  formData.append('upload_preset', 'react-journal-backend');
+  formData.append('file', file);
+
+  try {
+
+    // realizamos el metodo Post hacia la url
+    const response = await fetch(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+
+    // si la respuesta es correcta, retornamos la url de la imagan 
+    // ya cargada a cloudinary
+    if (response.ok) {
+      
+      const imageResponse = await response.json();
+      return imageResponse.secure_url
+    };
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// dectecta si el media-query es de 783px
+
+export const mediaQueryMobile = () => {
+
+  let match;
+  let query = window.matchMedia('(max-width: 763px)');
+
+  if (query.matches) {
+    match = true
+    return match
+  } else {
+    match = false
+    return match
+  }
+
+}
