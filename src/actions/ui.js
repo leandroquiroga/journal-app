@@ -18,3 +18,8 @@ export const startLoading = () => ({
 export const finishLoading = () => ({
   type: types.uiFinishLoading,
 })
+
+export const showSidebar = (value) => ({
+  type: types.setShowSidebar,
+  payload: value
+});
