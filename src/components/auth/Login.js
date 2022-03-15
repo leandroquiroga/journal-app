@@ -12,10 +12,11 @@ export const Login = () => {
 
   const state = useSelector(state => state.ui);
 
-  const { loading ,msgError } = state
+  const { loading, msgError } = state;
+
   const [valueForm, handleValueForm] = useForm({
-    email: 'leandro@gmail.com',
-    password: '1234564'
+    email: '',
+    password: ''
   });
   const { email, password } = valueForm;
 
@@ -35,7 +36,7 @@ export const Login = () => {
     dispatch(googleAuthSignUp());
   }
   return (
-    <>
+    <div className='animate__animated animate__fadeIn'>
 
       <h1 className='auth__title mb-1 text-center my-2'>Inicia sesión</h1>
 
@@ -43,14 +44,14 @@ export const Login = () => {
         className='flex-column mt-1'
         onSubmit={handleLogin}
       >
-        
+
         <label
           htmlFor='emailUser'
           className='auth__label mb-1'
         >
           Email:
         </label>
-        <input 
+        <input
           id='emailUser'
           autoFocus
           autoComplete='off'
@@ -68,7 +69,7 @@ export const Login = () => {
         >
           Contraseña:
         </label>
-        <input 
+        <input
           id='passUser'
           placeholder='Ingrese su contraseña...'
           type='password'
@@ -101,13 +102,13 @@ export const Login = () => {
           className='google-btn pointer width-100'
           onClick={handleLoginWithGoogle}
         >
-          
+
           <div className='google-icon-wrapper'>
             <img
-              className='google-icon' 
+              className='google-icon'
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="google button"
-            />  
+            />
           </div>
 
           <p className='btn-text text-center'>
@@ -121,7 +122,7 @@ export const Login = () => {
         >
           Crear una nueva cuenta
         </Link>
-      </form> 
-    </>
+      </form>
+    </div>
   )
 }
