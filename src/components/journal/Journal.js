@@ -7,16 +7,19 @@ import { Sidebar } from './components/Sidebar'
 export const Journal = () => {
 
   const state = useSelector(state => state);
-
   const { notes } = state;
+
+
   return (
     <div className='journal__main-content'>
 
       <Sidebar />
-      <main className='width-100 m-0'>
-        
+      <main
+        className='width-100 m-0 journal__main'
+      >
+
         {
-          (notes.active === null) 
+          (notes.active === null)
           ? (<NothingSelected /> )
           : (<Notes/>)
         }
