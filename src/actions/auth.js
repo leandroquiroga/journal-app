@@ -16,15 +16,13 @@ export const startLoginEmailPassword = (email, password) => {
       .then(({ user }) => {
         dispatch(finishLoading());
         
-        console.log(user)
         dispatch(
           login(user.uid, user.displayName),
-          console.log(login(user.uid, user.displayName))
         );
           
       }).catch(error => {
         dispatch(finishLoading());
-        isFormsValidLogin(email, password, dispatch, error.code)
+        isFormsValidLogin(dispatch, error.code)
       });
   };
 }  
@@ -47,9 +45,8 @@ export const singUpWithEmailAndPassword = (email, password, name) => {
           login(user.uid, user.displayName),
         );
 
-      }).catch((error) => {
+      }).catch(() => {
         dispatch(finishLoading());
-        isFormsValidLogin(dispatch, error.code)
       }); 
   }
 }
@@ -74,7 +71,8 @@ export const startLogout = () => {
   
   return async (dispatch) => {
     await app.auth().signOut();
-    dispatch(logout())
+    dispatch(logout());
+    dispatch(noteCleaning());
   }
 };
 
@@ -90,3 +88,7 @@ export const login = (uid, displayName) => ({
 export const logout = () => ({
   type:types.logout
 })
+
+export const noteCleaning = () => ({
+  type: types.notesLogoutCleaning,
+});
