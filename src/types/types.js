@@ -24,4 +24,8 @@ export const types = {
   notesFileUrl: '[Notes] Update image url',
   notesDelete: '[Notes] Delete note',
   notesLogoutCleaning: '[Notes] Logout Cleanig',
+
+  //types of ui mobile
+  setShowSidebar: '[Sidebar] Show Sidebar',
+
 }
