@@ -31,6 +31,11 @@ export const uiReducer = (state = initailState, action) => {
         ...state,
         loading: false,
       };
+    case types.setShowSidebar:
+      return {
+        ...state,
+        show: payload,
+      };
     default:
       return state;
   }
