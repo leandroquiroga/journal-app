@@ -16,10 +16,10 @@ export const Register = () => {
   const { loading, msgError } = state;
   
   const [valueForm, handleValueForm] = useForm({
-    name: 'Ema15',
-    email: 'ema@gmail.com',
-    password: '123456',
-    passwordConfirm: '123456'
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirm: ''
   });
 
   const { name, email, password, passwordConfirm } = valueForm;
@@ -38,7 +38,7 @@ export const Register = () => {
 
   }
   return (
-    <>
+    <div className='animate__animated animate__fadeIn'>
 
       <h1 className='auth__title mb-1 text-center my-2'>Registráte</h1>
 
@@ -139,6 +139,6 @@ export const Register = () => {
           ¿Ya tienes cuenta? Inicia sesíon
         </Link>
       </form> 
-    </>
+    </div>
   )
 }
