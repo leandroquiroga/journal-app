@@ -6,16 +6,31 @@
   background-color: $dark;
   color: $white;
   height: 100vh;
-  width: 350px;
+  width: 500px;
+}
+.sidebar-show{
+  transform: translateX(0%);
+}
+.journal__sidebar-icon{
+  overflow: hidden;
+  opacity: 0;
+  display: none;
+
+  @media(max-width: 763px){
+    overflow: visible;
+    opacity: 1;
+    display: block;
+  }
 }
 
 .journal__sidebar-navbar{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 
   h3{
-    font-weight: lighter;
+    font-weight: .9rem;
   }
 }
 
@@ -34,6 +49,10 @@
   margin-top: 30px;
   overflow: scroll;
   padding: 5px;
+
+  @media(max-width:763px){
+    margin: 30px auto;
+  }
 
   /*Style scrollbar for Chrome, Safari, Opera, etc*/
 
@@ -79,6 +98,9 @@
   color: $dark;
   margin-bottom: 10px;
   overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .journal__entry-picture{
