@@ -2,6 +2,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { activeNote } from '../../../actions/notes';
+import { mediaQueryMobile } from '../../../helpers/helpers';
+import { showSidebar } from '../../../actions/ui';
 import moment from 'moment';
 import 'moment/locale/es'
 
@@ -10,17 +12,14 @@ export const JournalEntry = ({ id, date, title, body, url }) => {
   const dispatch = useDispatch();
   const noteDate = moment(date);
 
-
   // Funcion que activa el estado de las tareas
   const handleEntryClick = () => {
-
-    dispatch(activeNote(id, {
-      date, title, body, url
-    }));
+    dispatch(activeNote(id, {date, title, body, url}));
+    if (mediaQueryMobile()) dispatch(showSidebar(false))
   }
   return (
     <div
-      className='flex-row journal__entry pointer'
+      className='animate__animated animate__fadeInLeft flex-row journal__entry pointer'
       onClick={handleEntryClick}
     >
 
