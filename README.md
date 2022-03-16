@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Journal App (React.js + Redux + Firestore)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto se basa en un journal en donde vamos a poder tener todas nuestras notas guardadas para lleva un control de ellas. Cada usuario puede iniciar sesion con su cuenta de google o su email y contraseña, tambien podemos registrarnos, cada usuario puede tener sus propias notas en onde se puede subir una imagen para identificar las notas (opcional). Este proyecto esta pensado para el mobile desing. 
 
-## Available Scripts
+# Construido con 🛠️
+* React.js
+* React Router DOM v5
+* Custom hooks
+* Sass
+* Firebase  
+* Redux 
+* Sweet Alert 
+* Validator
 
-In the project directory, you can run:
+# Funcionalidades ⚙️
+## Login and Regiter 
+Cada usuario que use la app tiene la chance de iniciar sesion con su cuenta de usuario, o su cuenta de google. Tambien puede registrarse a la hora de registrase debera registrarse con un nombre, un email (no puede ser con cualquier dominio) y el password (deben coicidir y debe ser entre 6 y 15 caracteres)
 
-### `npm start`
+## Validaciones
+Cuando iniciamos sesion debemos completar los campos, se debe respetar lo que pide ya que en caso de cumplir la validaciones no vamos a poder iniciar sesion o registrarnos, gracias a la libreria [Validator](https://www.npmjs.com/package/validator) ayuda mucho al registrar el dominio de los email, podemos controlar la cantidad de caracteres de nuestras contraseñas, etc. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## CRUD con firestrore # Funcionalidades ⚙️
+Se realiza acciones de lectura, actualizar, crear y eliminar nuestras notas y todo gracias a firesotre, estas acciones se controlan gracias a redux. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Subida de imagenes 
+Para subir imagenes se utiliza el servidor [Cloudary](https://cloudinary.com/), es super sencillo de usar y podemos utilizar con la base de datos de firestore. 
 
-### `npm test`
+## Rutas privadas y publicas
+Este proyecto utiliza react-router-dom en su version 5 (proximamente se actualizara a la ultima version) para proteger nuestras rutas, como por ejemplo una vez logeado no podemos realizar la visita a la ruta de login.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Utilizacion de Redux
+Al utilizar esta libreria en el proyecto se pudo dividir la funcionalidad de redux en varios pasos actions( en donde se encuentran todas las acciones que se realiza), types ( todos los types organizados por su nombre especifico), reducer ( una simple funcion que depende de el type para realizar determinada accion) y el store (en donde se almacenan todos los reducer utilizados en este proyecto )
 
-### `npm run build`
+## Custom Hooks
+En este proyecto solo se usa un solo custom hooks que es el useForm, que se lo utiliza en todo el proyecto ya sea para logearse, registrarse hasta para crear una nota. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Test 
+Proximamente..  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Deploy 👨‍💻
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bc082737-73e3-4c3d-931c-317ebb8000a6/deploy-status)](https://myjournalprivate.netlify.app/)
+# Contacto 📫
+- [Linkedin](https://www.linkedin.com/in/leanquiroga95/)
+- [Email](mailto:leandroquiroga9514@gmail.com)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Autor 👤
+Realizado con ❤️ por [Leandro Quiroga](https://github.com/leandroquiroga);
