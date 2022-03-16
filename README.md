@@ -19,7 +19,7 @@ Cada usuario que use la app tiene la chance de iniciar sesion con su cuenta de u
 ## Validaciones
 Cuando iniciamos sesion debemos completar los campos, se debe respetar lo que pide ya que en caso de cumplir la validaciones no vamos a poder iniciar sesion o registrarnos, gracias a la libreria [Validator](https://www.npmjs.com/package/validator) ayuda mucho al registrar el dominio de los email, podemos controlar la cantidad de caracteres de nuestras contraseñas, etc. 
 
-## CRUD con firestrore # Funcionalidades ⚙️
+## CRUD con firestrore
 Se realiza acciones de lectura, actualizar, crear y eliminar nuestras notas y todo gracias a firesotre, estas acciones se controlan gracias a redux. 
 
 ## Subida de imagenes 
